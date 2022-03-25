@@ -1,6 +1,8 @@
 #include "MQTTClient.h"
-#include "raylib.h"
 #include <iostream>
+#include "raylib.h"
+
+#define BETTERYLEVEL "robot/power/batteryLevel"
 
 using namespace std;
 
@@ -15,6 +17,7 @@ int main()
 
 	const string batteryLevel = "robot1/power/batteryLevel";
 	robot.subscribe(batteryLevel);
+	void* anda_a_la_mierda;
 
 	vector<MQTTMessage> messages;
 
@@ -28,11 +31,9 @@ int main()
 		messages = robot.getMessages();
 		if (messages.size())
 		{
-			for (int i = 0; i < messages.size(); i++)
-			{
-				cout << "MIRA ACA" << endl;
-				cout << messages.data()->topic << endl;
-			}
+			cout << "MIRA ACA" << endl;
+			anda_a_la_mierda = messages.data()->payload.data();
+			cout <<    100*(* (float*)anda_a_la_mierda) << endl;
 		}
 
 		EndDrawing();
