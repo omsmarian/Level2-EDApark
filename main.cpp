@@ -2,8 +2,6 @@
 #include <iostream>
 #include "raylib.h"
 
-#define BETTERYLEVEL "robot/power/batteryLevel"
-
 using namespace std;
 
 int main()
@@ -24,7 +22,6 @@ int main()
 	void* anda_a_la_mierda;
 
 	vector<MQTTMessage> lectura;			// lo usamos para leer data
-	vector<MQTTMessage> escritura;			// para controlar el robot
 	
 	float amper = 6;
 	float gonza = -6;
