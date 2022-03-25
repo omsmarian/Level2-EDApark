@@ -3,6 +3,8 @@
 
 #include "MQTTClient.h"
 
+#define POWER 6.0f
+
 class Controller
 {
 public:
