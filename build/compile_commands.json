@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/Users/segundomartineztanoira/Documents/Vscode/Github/Level2/build",
+  "command": "/usr/bin/clang++  -isystem /Users/segundomartineztanoira/dev/vcpkg/installed/x64-osx/include -g -fsanitize=address -std=gnu++11 -o CMakeFiles/main.dir/main.cpp.o -c /Users/segundomartineztanoira/Documents/Vscode/Github/Level2/main.cpp",
+  "file": "/Users/segundomartineztanoira/Documents/Vscode/Github/Level2/main.cpp"
+},
+{
+  "directory": "/Users/segundomartineztanoira/Documents/Vscode/Github/Level2/build",
+  "command": "/usr/bin/clang++  -isystem /Users/segundomartineztanoira/dev/vcpkg/installed/x64-osx/include -g -fsanitize=address -std=gnu++11 -o CMakeFiles/main.dir/MQTTClient.cpp.o -c /Users/segundomartineztanoira/Documents/Vscode/Github/Level2/MQTTClient.cpp",
+  "file": "/Users/segundomartineztanoira/Documents/Vscode/Github/Level2/MQTTClient.cpp"
+}
+]

@@ -1,0 +1,3 @@
+/Users/segundomartineztanoira/Documents/Vscode/Github/Level2/build/CMakeFiles/main.dir
+/Users/segundomartineztanoira/Documents/Vscode/Github/Level2/build/CMakeFiles/edit_cache.dir
+/Users/segundomartineztanoira/Documents/Vscode/Github/Level2/build/CMakeFiles/rebuild_cache.dir
