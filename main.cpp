@@ -17,25 +17,38 @@ int main()
 
 	const string batteryLevel = "robot1/power/batteryLevel";
 	const string coordinates = "robot1/motion/position";
-	robot.subscribe(coordinates);
+	const string velocity = "robot1/motion/velocity";
+	const string motor1Setter = "robot1/motor1/current/set";
+	const string motor3Setter = "robot1/motor3/current/set";
+	robot.subscribe(velocity);
 	void* anda_a_la_mierda;
 
-	vector<MQTTMessage> messages;
+	vector<MQTTMessage> lectura;			// lo usamos para leer data
+	vector<MQTTMessage> escritura;			// para controlar el robot
+	
+	float amper = 6;
+	float gonza = -6;
+
+	vector<char> copy(sizeof(float));
+	memcpy(copy.data(), &amper, sizeof(float));
+	robot.publish(motor1Setter, copy);
+	memcpy(copy.data(), &gonza, sizeof(float));
+	robot.publish(motor3Setter, copy);
+
 
 	SetTargetFPS(60);
-	while (!WindowShouldClose())
+	while (!WindowShouldClose() && robot.isConnected())
 	{
 		BeginDrawing();
 		ClearBackground(RAYWHITE);
 		DrawText("Anda A Laburar!", 340, 200, 20, LIGHTGRAY);
-
-		messages = robot.getMessages();
-		if (messages.size())
+		lectura = robot.getMessages();
+		if (!lectura.empty())
 		{
 			cout << "MIRA ACA" << endl;
-			anda_a_la_mierda = messages.data()->payload.data();
-			for(int i = 0; i < 3; i++)
-				cout <<    (* (float*)anda_a_la_mierda) << ",";
+			anda_a_la_mierda = lectura.data()->payload.data();
+			for (int i = 0; i < 3; i++)
+				cout << (*(float*)anda_a_la_mierda) << " ,";
 			cout << endl;
 		}
 
