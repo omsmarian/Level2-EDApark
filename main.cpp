@@ -16,7 +16,8 @@ int main()
 	robot.connect("127.0.0.1", 1883, "user", "vdivEMMN3SQWX2Ez");
 
 	const string batteryLevel = "robot1/power/batteryLevel";
-	robot.subscribe(batteryLevel);
+	const string coordinates = "robot1/motion/position";
+	robot.subscribe(coordinates);
 	void* anda_a_la_mierda;
 
 	vector<MQTTMessage> messages;
@@ -33,7 +34,9 @@ int main()
 		{
 			cout << "MIRA ACA" << endl;
 			anda_a_la_mierda = messages.data()->payload.data();
-			cout <<    100*(* (float*)anda_a_la_mierda) << endl;
+			for(int i = 0; i < 3; i++)
+				cout <<    (* (float*)anda_a_la_mierda) << ",";
+			cout << endl;
 		}
 
 		EndDrawing();
