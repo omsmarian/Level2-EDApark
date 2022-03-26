@@ -11,8 +11,10 @@ public:
 	Controller(MQTTClient* robot);
 	void floatToVector(float num);
 	void sendDatato(const std::string destination);
+	void getDatafrom(const std::string source);
 	float vectorToFloat();
-
+	bool getIsConnected();
+	bool getEmpty();
 
 private:
 	std::vector<char> write;
