@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "/Users/segundomartineztanoira/Documents/Vscode/Github/Level2/Controller.cpp" "CMakeFiles/main.dir/Controller.cpp.o" "gcc" "CMakeFiles/main.dir/Controller.cpp.o.d"
   "/Users/segundomartineztanoira/Documents/Vscode/Github/Level2/MQTTClient.cpp" "CMakeFiles/main.dir/MQTTClient.cpp.o" "gcc" "CMakeFiles/main.dir/MQTTClient.cpp.o.d"
   "/Users/segundomartineztanoira/Documents/Vscode/Github/Level2/main.cpp" "CMakeFiles/main.dir/main.cpp.o" "gcc" "CMakeFiles/main.dir/main.cpp.o.d"
   )

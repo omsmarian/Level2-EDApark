@@ -129,6 +129,30 @@ main/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
 .PHONY : main/fast
 
+Controller.o: Controller.cpp.o
+.PHONY : Controller.o
+
+# target to build an object file
+Controller.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Controller.cpp.o
+.PHONY : Controller.cpp.o
+
+Controller.i: Controller.cpp.i
+.PHONY : Controller.i
+
+# target to preprocess a source file
+Controller.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Controller.cpp.i
+.PHONY : Controller.cpp.i
+
+Controller.s: Controller.cpp.s
+.PHONY : Controller.s
+
+# target to generate assembly for a file
+Controller.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/Controller.cpp.s
+.PHONY : Controller.cpp.s
+
 MQTTClient.o: MQTTClient.cpp.o
 .PHONY : MQTTClient.o
 
@@ -186,6 +210,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... main"
+	@echo "... Controller.o"
+	@echo "... Controller.i"
+	@echo "... Controller.s"
 	@echo "... MQTTClient.o"
 	@echo "... MQTTClient.i"
 	@echo "... MQTTClient.s"

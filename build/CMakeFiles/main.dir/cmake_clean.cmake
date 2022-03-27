@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/main.dir/Controller.cpp.o"
+  "CMakeFiles/main.dir/Controller.cpp.o.d"
   "CMakeFiles/main.dir/MQTTClient.cpp.o"
   "CMakeFiles/main.dir/MQTTClient.cpp.o.d"
   "CMakeFiles/main.dir/main.cpp.o"

@@ -12,7 +12,7 @@ void Controller::floatToVector(float num)
 	memcpy(this->write.data(), &num, sizeof(float));
 }
 
-void Controller::sendDatato(const std::string destination)
+void Controller::sendDataTo(const std::string destination)
 {
 	this->ptr->publish(destination, this->write);
 }
