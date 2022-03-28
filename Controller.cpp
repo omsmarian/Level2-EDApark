@@ -41,8 +41,8 @@ void Controller::getDatafrom(const std::string source)
 void Controller::keyboardInput()
 {
 	bool keyDown = false;
-	float amper = 0, amper_w = 0, amper_a = 0, amper_s = 0, amper_d = 0;
-	//float amper = amper_a + amper_s + amper_d + amper_w;
+	float amper_w = 0, amper_a = 0, amper_s = 0, amper_d = 0;
+	float amper = amper_a + amper_s + amper_d + amper_w;
 	if (IsKeyDown(KEY_W))
 	{
 		DrawText("[W]", SCREENWIDTH / 2 - 55, SCREENHEIGHT / 2 - 35, 50, GREEN);
@@ -76,7 +76,7 @@ void Controller::keyboardInput()
 	if (IsKeyDown(KEY_S))
 	{
 		DrawText("[S]", SCREENWIDTH / 2 - 50, SCREENHEIGHT / 2 + 20, 50, GREEN);
-		amper_s += 0.5;
+		amper_s -= 0.5;
 		if (amper_s < 3)
 		{
 			this->floatToVector(-amper_s);
@@ -103,6 +103,16 @@ void Controller::keyboardInput()
 		keyDown = true;
 	}
 
+	if (keyDown == false)
+	{
+		amper = 0, amper_w = 0, amper_a = 0, amper_s = 0, amper_d = 0;
+		this->floatToVector(amper);
+		this->sendDataTo(this->names.getMotor1Setter());
+		this->sendDataTo(this->names.getMotor2Setter());
+		this->sendDataTo(this->names.getMotor3Setter());
+		this->sendDataTo(this->names.getMotor4Setter());
+	}
+	
 }
 
 void Controller::suscribeTo(const std::string input)
