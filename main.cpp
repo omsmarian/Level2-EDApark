@@ -1,6 +1,6 @@
-//#include "MQTTClient.h"
 #include <iostream>
 #include "Controller.h"
+#include "View.h"
 
 using namespace std;
 
@@ -9,7 +9,7 @@ int main()
 	InitWindow(SCREENWIDTH, SCREENHEIGHT, "EDA controler");
 	MQTTClient robot("controller");
 	Controller control(&robot);
-
+	View Render(&robot);
 
 
 
@@ -18,7 +18,7 @@ int main()
 	{
 		BeginDrawing();
 		ClearBackground(RAYWHITE);
-
+		Render.displayData();
 		control.keyboardInput();
 		EndDrawing();
 	}

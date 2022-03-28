@@ -12,18 +12,16 @@ class Controller
 {
 public:
 	Controller(MQTTClient* robot);
-	void floatToVector(float num);
-	void sendDataTo(const std::string destination);
-	void getDatafrom(const std::string source);
-	float vectorToFloat();
 	bool getIsConnected();
-	bool getEmpty();
 	void keyboardInput();
-	void suscribeTo(const std::string input);
+	
 
 private:
+	void sendDataTo(const std::string destination);
+	void floatToVector(float num);
+
+	
 	std::vector<char> write;
-	std::vector<MQTTMessage> read;
 	MQTTClient* ptr;
 
 	Topics names;

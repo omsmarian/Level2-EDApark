@@ -11,6 +11,7 @@ public:
 	std::string getBatteryLevel();
 	std::string getCoordinates();
 	std::string getNMotorCurrentSet(int x);
+	std::string getNMotorTemperature(int x);
 
 private:
 	const std::string batteryLevel = "robot1/power/batteryLevel";

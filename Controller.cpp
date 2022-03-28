@@ -17,26 +17,16 @@ void Controller::sendDataTo(const std::string destination)
 	this->ptr->publish(destination, this->write);
 }
 
-float Controller::vectorToFloat()
-{
-	void* carrier = this->read.data()->payload.data();
-	return *(float*)carrier;
-}
+
 
 bool Controller::getIsConnected()
 {
 	return this->ptr->isConnected();
 }
 
-bool Controller::getEmpty()
-{
-	return this->read.empty();
-}
 
-void Controller::getDatafrom(const std::string source)
-{
-	this->read = this->ptr->getMessages();
-}
+
+
 
 void Controller::keyboardInput()
 {
@@ -99,12 +89,12 @@ void Controller::keyboardInput()
 		amperX -= 0.5;
 		if (amperX > -3)
 		{
-			this->floatToVector(amperX);
-			this->sendDataTo(this->names.getNMotorCurrentSet(3));
-			this->sendDataTo(this->names.getNMotorCurrentSet(4));
 			this->floatToVector(-amperX);
 			this->sendDataTo(this->names.getNMotorCurrentSet(1));
 			this->sendDataTo(this->names.getNMotorCurrentSet(2));
+			this->floatToVector(amperX);
+			this->sendDataTo(this->names.getNMotorCurrentSet(3));
+			this->sendDataTo(this->names.getNMotorCurrentSet(4));
 		}
 		keyDown = true;
 	}
@@ -145,9 +135,4 @@ void Controller::keyboardInput()
 		this->sendDataTo(this->names.getNMotorCurrentSet(3));
 		this->sendDataTo(this->names.getNMotorCurrentSet(4));
 	}
-}
-
-void Controller::suscribeTo(const std::string input)
-{
-	this->ptr->subscribe(input);
 }
