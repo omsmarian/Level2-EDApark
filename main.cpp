@@ -18,8 +18,8 @@ int main()
 	{
 		BeginDrawing();
 		ClearBackground(RAYWHITE);
-		Render.displayData();
 		control.keyboardInput();
+		Render.displayAllData();
 		EndDrawing();
 	}
 	CloseWindow();

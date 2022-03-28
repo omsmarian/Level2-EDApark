@@ -4,9 +4,9 @@ std::string Topics::getBatteryLevel()
 {
 	return this->batteryLevel;
 }
-std::string Topics::getCoordinates()
+std::string Topics::getPower()
 {
-    return this->coordinates;
+    return this->power;
 }
 
 std::string Topics::getNMotorCurrentSet(int x)

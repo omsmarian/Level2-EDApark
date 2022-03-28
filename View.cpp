@@ -4,11 +4,10 @@ View::View(MQTTClient* robot)
 {
     this->ptr = robot;
     this->suscribeTo(this->names.getBatteryLevel());
-}
-
-bool View::getEmpty()
-{
-	return this->read.empty();
+    this->suscribeTo(this->names.getNMotorTemperature(1));
+    this->suscribeTo(this->names.getNMotorTemperature(2));
+    this->suscribeTo(this->names.getNMotorTemperature(3));
+    this->suscribeTo(this->names.getNMotorTemperature(4));
 }
 
 float View::vectorToFloat()
@@ -32,15 +31,34 @@ void View::suscribeTo(const std::string input)
 	this->ptr->subscribe(input);
 }
 
-void View::displayData()
+const char* View::displayBattery()
 {
+    static const char *text;
     getDatafrom();
     if(!getEmpty())
     {
-        if (read.data()->topic == this->names.getBatteryLevel())
-        {
-            const char *text = TextFormat("Battery: %03f", 100*(this->vectorToFloat()));
-            DrawText(text,0,0,20,RED);
-        }
+            text = TextFormat("Battery: %.2f%", 100 * (this->vectorToFloat()));
     }
+    return text;
+}
+const char* View::displayM1Temp()
+{
+
+}
+const char* View::displayM2Temp()
+{
+
+}
+const char* View::displayM3Temp()
+{
+
+}
+const char* View::displayM4Temp()
+{
+
+}
+
+void View::displayAllData()
+{
+    
 }

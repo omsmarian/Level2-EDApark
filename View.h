@@ -9,14 +9,18 @@ class View
 public:
 
 	View(MQTTClient* robot);
-	bool getEmpty();
 	void suscribeTo(const std::string input);
-    void displayData();
+	const char* displayBattery();
+	const char* displayM1Temp();
+	const char* displayM2Temp();
+	const char* displayM3Temp();
+	const char* displayM4Temp();
+	void displayAllData();
 
 private:
 
 	float vectorToFloat();
-    bool getEmpty();
+	bool getEmpty();
 	void getDatafrom();
 
 	MQTTClient* ptr;
