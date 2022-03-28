@@ -8,19 +8,8 @@ std::string Topics::getCoordinates()
 {
     return this->coordinates;
 }
-std::string Topics::getMotor1Setter()
+
+std::string Topics::getNMotorCurrentSet(int x)
 {
-    return this->motor1Setter;
-}
-std::string Topics::getMotor2Setter()
-{
-    return this->motor2Setter;
-}
-std::string Topics::getMotor3Setter()
-{
-    return this->motor3Setter;
-}
-std::string Topics::getMotor4Setter()
-{
-    return this->motor4Setter;
+	return "robot1/motor" + std::to_string(x) + "/current/set";
 }

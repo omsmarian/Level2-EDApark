@@ -40,79 +40,111 @@ void Controller::getDatafrom(const std::string source)
 
 void Controller::keyboardInput()
 {
+	DrawText("[W]", SCREENWIDTH / 2 - 55, SCREENHEIGHT / 2 - 35, 50, GRAY);
+	DrawText("[S]", SCREENWIDTH / 2 - 50, SCREENHEIGHT / 2 + 20, 50, GRAY);
+	DrawText("[A]", SCREENWIDTH / 2 - 120, SCREENHEIGHT / 2 + 20, 50, GRAY);
+	DrawText("[D]", SCREENWIDTH / 2 + 20, SCREENHEIGHT / 2 + 20, 50, GRAY);
+	DrawText("[E]", SCREENWIDTH / 2 + 20, SCREENHEIGHT / 2 - 35, 50, GRAY);
+	DrawText("[Q]", SCREENWIDTH / 2 - 120, SCREENHEIGHT / 2 - 35, 50, GRAY);
 	bool keyDown = false;
-	float amper_w = 0, amper_a = 0, amper_s = 0, amper_d = 0;
-	float amper = amper_a + amper_s + amper_d + amper_w;
+	float amperY = 0, amperX = 0, amperTurn = 0, amperStop = 0, amperDiagonal = 0;
 	if (IsKeyDown(KEY_W))
 	{
 		DrawText("[W]", SCREENWIDTH / 2 - 55, SCREENHEIGHT / 2 - 35, 50, GREEN);
-		amper_w += 0.5;
-		if (amper_w < 3)
+		amperY += 0.5;
+		if (amperY < 3)
 		{
-			this->floatToVector(amper_w);
-			this->sendDataTo(this->names.getMotor1Setter());
-			this->sendDataTo(this->names.getMotor4Setter());
-			this->floatToVector(-amper_w);
-			this->sendDataTo(this->names.getMotor2Setter());
-			this->sendDataTo(this->names.getMotor3Setter());
-		}
-		keyDown = true;
-
-	}
-	if (IsKeyDown(KEY_D))
-	{
-		DrawText("[D]", SCREENWIDTH / 2 + 20, SCREENHEIGHT / 2 + 20, 50, GREEN);
-		amper_d += 0.125;
-		if (amper_d < 3)
-		{
-			this->floatToVector(-amper_d);
-			this->sendDataTo(this->names.getMotor1Setter());
-			this->sendDataTo(this->names.getMotor2Setter());
-			this->sendDataTo(this->names.getMotor3Setter());
-			this->sendDataTo(this->names.getMotor4Setter());
+			this->floatToVector(amperY);
+			this->sendDataTo(this->names.getNMotorCurrentSet(1));
+			this->sendDataTo(this->names.getNMotorCurrentSet(4));
+			this->floatToVector(-amperY);
+			this->sendDataTo(this->names.getNMotorCurrentSet(2));
+			this->sendDataTo(this->names.getNMotorCurrentSet(3));
 		}
 		keyDown = true;
 	}
 	if (IsKeyDown(KEY_S))
 	{
 		DrawText("[S]", SCREENWIDTH / 2 - 50, SCREENHEIGHT / 2 + 20, 50, GREEN);
-		amper_s -= 0.5;
-		if (amper_s < 3)
+		amperY -= 0.5;
+		if (amperY > -3)
 		{
-			this->floatToVector(-amper_s);
-			this->sendDataTo(this->names.getMotor1Setter());
-			this->sendDataTo(this->names.getMotor4Setter());
-			this->floatToVector(amper_s);
-			this->sendDataTo(this->names.getMotor2Setter());
-			this->sendDataTo(this->names.getMotor3Setter());
+			this->floatToVector(amperY);
+			this->sendDataTo(this->names.getNMotorCurrentSet(1));
+			this->sendDataTo(this->names.getNMotorCurrentSet(4));
+			this->floatToVector(-amperY);
+			this->sendDataTo(this->names.getNMotorCurrentSet(2));
+			this->sendDataTo(this->names.getNMotorCurrentSet(3));
+		}
+		keyDown = true;
+	}
+	if (IsKeyDown(KEY_D))
+	{
+		DrawText("[D]", SCREENWIDTH / 2 + 20, SCREENHEIGHT / 2 + 20, 50, GREEN);
+		amperX += 0.5;
+		if (amperX < 3)
+		{
+			this->floatToVector(-amperX);
+			this->sendDataTo(this->names.getNMotorCurrentSet(1));
+			this->sendDataTo(this->names.getNMotorCurrentSet(2));
+			this->floatToVector(amperX);
+			this->sendDataTo(this->names.getNMotorCurrentSet(3));
+			this->sendDataTo(this->names.getNMotorCurrentSet(4));
 		}
 		keyDown = true;
 	}
 	if (IsKeyDown(KEY_A))
 	{
 		DrawText("[A]", SCREENWIDTH / 2 - 120, SCREENHEIGHT / 2 + 20, 50, GREEN);
-		amper_a += 0.125;
-		if (amper_a < 3)
+		amperX -= 0.5;
+		if (amperX > -3)
 		{
-			this->floatToVector(amper_a);
-			this->sendDataTo(this->names.getMotor1Setter());
-			this->sendDataTo(this->names.getMotor2Setter());
-			this->sendDataTo(this->names.getMotor3Setter());
-			this->sendDataTo(this->names.getMotor4Setter());
+			this->floatToVector(amperX);
+			this->sendDataTo(this->names.getNMotorCurrentSet(3));
+			this->sendDataTo(this->names.getNMotorCurrentSet(4));
+			this->floatToVector(-amperX);
+			this->sendDataTo(this->names.getNMotorCurrentSet(1));
+			this->sendDataTo(this->names.getNMotorCurrentSet(2));
 		}
 		keyDown = true;
 	}
-
+	if (IsKeyDown(KEY_E))
+	{
+		DrawText("[E]", SCREENWIDTH / 2 + 20, SCREENHEIGHT / 2 - 35, 50, GREEN);
+		amperTurn += 0.125;
+		if (amperTurn < 3)
+		{
+			this->floatToVector(-amperTurn);
+			this->sendDataTo(this->names.getNMotorCurrentSet(1));
+			this->sendDataTo(this->names.getNMotorCurrentSet(2));
+			this->sendDataTo(this->names.getNMotorCurrentSet(3));
+			this->sendDataTo(this->names.getNMotorCurrentSet(4));
+		}
+		keyDown = true;
+	}
+	if (IsKeyDown(KEY_Q))
+	{
+		DrawText("[Q]", SCREENWIDTH / 2 - 120, SCREENHEIGHT / 2 - 35, 50, GREEN);
+		amperTurn -= 0.125;
+		if (amperTurn > -3)
+		{
+			this->floatToVector(-amperTurn);
+			this->sendDataTo(this->names.getNMotorCurrentSet(1));
+			this->sendDataTo(this->names.getNMotorCurrentSet(2));
+			this->sendDataTo(this->names.getNMotorCurrentSet(3));
+			this->sendDataTo(this->names.getNMotorCurrentSet(4));
+		}
+		keyDown = true;
+	}
 	if (keyDown == false)
 	{
-		amper = 0, amper_w = 0, amper_a = 0, amper_s = 0, amper_d = 0;
-		this->floatToVector(amper);
-		this->sendDataTo(this->names.getMotor1Setter());
-		this->sendDataTo(this->names.getMotor2Setter());
-		this->sendDataTo(this->names.getMotor3Setter());
-		this->sendDataTo(this->names.getMotor4Setter());
+		amperY = 0, amperTurn = 0, amperX = 0;
+		this->floatToVector(amperStop);
+		this->sendDataTo(this->names.getNMotorCurrentSet(1));
+		this->sendDataTo(this->names.getNMotorCurrentSet(2));
+		this->sendDataTo(this->names.getNMotorCurrentSet(3));
+		this->sendDataTo(this->names.getNMotorCurrentSet(4));
 	}
-	
 }
 
 void Controller::suscribeTo(const std::string input)
