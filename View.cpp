@@ -30,7 +30,7 @@ void View::suscribeTo(const std::string input)
 {
 	this->ptr->subscribe(input);
 }
-
+/*
 const char* View::displayBattery()
 {
     static const char *text;
@@ -62,3 +62,4 @@ void View::displayAllData()
 {
     
 }
+*/

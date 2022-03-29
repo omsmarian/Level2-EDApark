@@ -19,7 +19,7 @@ int main()
 		BeginDrawing();
 		ClearBackground(RAYWHITE);
 		control.keyboardInput();
-		Render.displayAllData();
+		//Render.displayAllData();
 		EndDrawing();
 	}
 	CloseWindow();

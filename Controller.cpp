@@ -5,6 +5,7 @@ Controller::Controller(MQTTClient* robot)
 	this->ptr = robot;
 	ptr->connect("127.0.0.1", 1883, "user", "vdivEMMN3SQWX2Ez");
 	this->write.resize(sizeof(float));
+	this->check.resize(sizeof(float));
 }
 
 void Controller::floatToVector(float num)
@@ -12,9 +13,14 @@ void Controller::floatToVector(float num)
 	memcpy(this->write.data(), &num, sizeof(float));
 }
 
-void Controller::sendDataTo(const std::string destination)
+void Controller::sendDataTo(const std::string destination, float power)
 {
-	this->ptr->publish(destination, this->write);
+	this->floatToVector(INTENSITY * power);
+	if(this->write != this->check)
+	{ 
+		this->ptr->publish(destination, this->write);
+		this->check = this->write;
+	}
 }
 
 
@@ -25,9 +31,6 @@ bool Controller::getIsConnected()
 }
 
 
-
-
-
 void Controller::keyboardInput()
 {
 	DrawText("[W]", SCREENWIDTH / 2 - 55, SCREENHEIGHT / 2 - 35, 50, GRAY);
@@ -36,8 +39,14 @@ void Controller::keyboardInput()
 	DrawText("[D]", SCREENWIDTH / 2 + 20, SCREENHEIGHT / 2 + 20, 50, GRAY);
 	DrawText("[E]", SCREENWIDTH / 2 + 20, SCREENHEIGHT / 2 - 35, 50, GRAY);
 	DrawText("[Q]", SCREENWIDTH / 2 - 120, SCREENHEIGHT / 2 - 35, 50, GRAY);
-	bool keyDown = false;
-	float amperY = 0, amperX = 0, amperTurn = 0, amperStop = 0, amperDiagonal = 0;
+
+	float amperY = IsKeyDown(KEY_W) - IsKeyDown(KEY_S), amperX = IsKeyDown(KEY_D) - IsKeyDown(KEY_A),
+		amperRot = (IsKeyDown(KEY_E) - IsKeyDown(KEY_Q))/4.0f;
+	this->sendDataTo(this->names.getNMotorCurrentSet(1), amperY - amperX - amperRot);
+	this->sendDataTo(this->names.getNMotorCurrentSet(2), -amperY - amperX - amperRot);
+	this->sendDataTo(this->names.getNMotorCurrentSet(3), -amperY + amperX - amperRot);
+	this->sendDataTo(this->names.getNMotorCurrentSet(4), amperY + amperX - amperRot);
+	/*float amperY = 0, amperX = 0, amperTurn = 0, amperStop = 0, amperDiagonal = 0;
 	if (IsKeyDown(KEY_W))
 	{
 		DrawText("[W]", SCREENWIDTH / 2 - 55, SCREENHEIGHT / 2 - 35, 50, GREEN);
@@ -134,5 +143,5 @@ void Controller::keyboardInput()
 		this->sendDataTo(this->names.getNMotorCurrentSet(2));
 		this->sendDataTo(this->names.getNMotorCurrentSet(3));
 		this->sendDataTo(this->names.getNMotorCurrentSet(4));
-	}
+	}*/
 }

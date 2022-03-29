@@ -7,6 +7,7 @@
 
 #define SCREENWIDTH 800
 #define SCREENHEIGHT 450
+#define INTENSITY 4.0f
 
 class Controller
 {
@@ -17,11 +18,12 @@ public:
 	
 
 private:
-	void sendDataTo(const std::string destination);
+	void sendDataTo(const std::string destination, float power);
 	void floatToVector(float num);
 
 	
 	std::vector<char> write;
+	std::vector<char> check;
 	MQTTClient* ptr;
 
 	Topics names;
