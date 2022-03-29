@@ -8,7 +8,7 @@
  *
  * Level 2:
  *
- * This file is responsible of recieve data from the keyboard and send it to EDApark
+ * This file is responsible of displaying the data
  */
 
 #include "View.h"
@@ -43,7 +43,7 @@ bool View::getEmpty()
 }
 
 /*
- * 
+ * Gets the messages and saves them in read
  */
 void View::getDatafrom()
 {
@@ -51,14 +51,15 @@ void View::getDatafrom()
 }
 
 /*
- *
+ * Subscribes to a topicc
+ * INPUT: string with the directoin of topic
  */
 void View::suscribeTo(const std::string input)
 {
 	this->client->subscribe(input);
 }
 /*
- * 
+ * Draw the keys and changes color when the key is pressed 
  */
 void View::render2D()
 {
