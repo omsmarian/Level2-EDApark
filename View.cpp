@@ -58,6 +58,7 @@ void View::suscribeTo(const std::string input)
 {
 	this->client->subscribe(input);
 }
+
 /*
  * Draw the keys and changes color when the key is pressed 
  */
@@ -82,6 +83,7 @@ void View::render2D()
 		DrawText("[Q]", SCREENWIDTH / 2 - 120, SCREENHEIGHT / 2 - 35, 50, GREEN);
 	if (IsKeyDown(KEY_E))
 		DrawText("[E]", SCREENWIDTH / 2 + 20, SCREENHEIGHT / 2 - 35, 50, GREEN);
+	this->displayVelocity();
 }
 
 /*

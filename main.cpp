@@ -15,8 +15,6 @@
 #include "Controller.h"
 #include "View.h"
 
-using namespace std;
-
 int main()
 {
 	MQTTClient robot(CLIENTNAME);
@@ -32,7 +30,7 @@ int main()
 		ClearBackground(RAYWHITE);
 		control.keyboardInput();
 		render.render2D();
-		render.displayVelocity();
+		//render.displayVelocity();
 		EndDrawing();
 	}
 	CloseWindow();
