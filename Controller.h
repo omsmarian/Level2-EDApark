@@ -5,8 +5,6 @@
 #include "raylib.h"
 #include "Topics.h"
 
-#define SCREENWIDTH 800
-#define SCREENHEIGHT 450
 #define INTENSITY 4.0f
 
 class Controller
@@ -23,7 +21,9 @@ private:
 
 	
 	std::vector<char> write;
-	std::vector<char> check;
+	int amperYcheck;
+	int amperXcheck;
+	int amperRotCheck;
 	MQTTClient* ptr;
 
 	Topics names;

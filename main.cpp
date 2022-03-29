@@ -6,10 +6,11 @@ using namespace std;
 
 int main()
 {
-	InitWindow(SCREENWIDTH, SCREENHEIGHT, "EDA controler");
 	MQTTClient robot("controller");
 	Controller control(&robot);
-	View Render(&robot);
+	View render(&robot);
+	InitWindow(SCREENWIDTH, SCREENHEIGHT, "EDA controler");
+	SetWindowIcon(render.icon);						// TODO: hay un icono :0
 
 
 
@@ -19,7 +20,7 @@ int main()
 		BeginDrawing();
 		ClearBackground(RAYWHITE);
 		control.keyboardInput();
-		//Render.displayAllData();
+		render.displayAllData();
 		EndDrawing();
 	}
 	CloseWindow();
